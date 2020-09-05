@@ -60,37 +60,6 @@ require_once '../Backend/common.php';
   ======================================================= -->
 </head>
 
-    <!-- <style>
-        html * {
-            font-family: Arial !important;
-        }
-
-        p {
-            font-size: 20px;
-        }
-
-        table {
-            border-collapse: collapse;
-            border: solid 2px #ccc;
-            font-size: 18px;
-        }
-
-        table td {
-            padding: 10px;
-        }
-
-        .submit {
-            height: 30px;
-            width: 75px;
-            font-size: 16px;
-        }
-
-        #submitrow {
-            background-color: rgb(235, 235, 235);
-        }
-    </style>
-
-</head> -->
 <body>
 <section id="hero" class="wow fadeIn">
     <div class="hero-container">
@@ -125,12 +94,8 @@ require_once '../Backend/common.php';
             </tr>
             <tr>
                 <td colspan=2 align=center id=submitrow>
-<<<<<<< Updated upstream
                 <br>
                 <a href="Start.php" class="btn-get-started scrollto" value='Login'>Register</a>
-=======
-                <input type='submit' class=submit value='Register'>
->>>>>>> Stashed changes
                 </td>
             </tr>
         </table>
