@@ -44,11 +44,10 @@ require_once '../Backend/common.php';
 <body>
     <section id="home" class="wow fadeIn">
         <div class="hero-container">
-          <h1>Welcome </h1>
           <?php
           $userObj = new UserDAO;
           $full_name = $userObj->getFullName($_SESSION["username"]);
-          echo "<h1>{$full_name}<h1>" + "<br>";
+          echo "<h1>Welcome ".$full_name."<h1><br>";
           ?>
           
         </div>
