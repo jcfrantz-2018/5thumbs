@@ -36,8 +36,8 @@
     else {
         // No Errors
         // main.php
-        $_SESSION['username'] = $username;
-        header('Location: Risk.php');
+        //$_SESSION['account'] = $username;
+        header('Location: Home.php');
         return;
     }    
     
