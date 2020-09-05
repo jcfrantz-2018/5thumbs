@@ -81,7 +81,7 @@ require_once '../Backend/common.php';
 
         .submit {
             height: 30px;
-            width: 65px;
+            width: 75px;
             font-size: 16px;
         }
 
@@ -125,8 +125,12 @@ require_once '../Backend/common.php';
             </tr>
             <tr>
                 <td colspan=2 align=center id=submitrow>
+<<<<<<< Updated upstream
                 <br>
                 <a href="Start.php" class="btn-get-started scrollto" value='Login'>Register</a>
+=======
+                <input type='submit' class=submit value='Register'>
+>>>>>>> Stashed changes
                 </td>
             </tr>
         </table>
