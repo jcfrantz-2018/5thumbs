@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`email`, `password`, `username`) VALUES
 ('alice@aaa.com', '123', 'alice'),
 ('bob@bbb.com', '234', 'bob'),
-('calvin@ccc.com', '345', 'calvin')
-
+('calvin@ccc.com', '345', 'calvin');
 COMMIT;
 
 --
@@ -57,7 +56,7 @@ COMMIT;
 DROP TABLE IF EXISTS `epoints`;
 CREATE TABLE IF NOT EXISTS `epoints` (
   `email` varchar(255) NOT NULL,
-  `epoints` int(255) NOT NULL
+  `epoints` int(255) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,8 +68,7 @@ CREATE TABLE IF NOT EXISTS `epoints` (
 INSERT INTO `epoints` (`email`, `epoints`) VALUES
 ('alice@aaa.com', 10),
 ('bob@bbb.com', 20),
-('calvin@ccc.com', 30)
-
+('calvin@ccc.com', 30);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
