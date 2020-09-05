@@ -50,9 +50,7 @@ require_once '../Backend/common.php';
           $full_name = $userObj->getFullName($_SESSION["username"]);
           echo "<h1>{$full_name}<h1>" + "<br>";
           ?>
-          <h2>Elegant Bootstrap Template for Startups, Apps &amp; more...</h2>
-          <img src="img/hero-img.png" alt="Hero Imgs">
-          <a href="#get-started" class="btn-get-started scrollto">Get Started</a>
+          
         </div>
       </section>
 </body>

@@ -40,6 +40,9 @@
     <div class="hero-container">
       <h1>Welcome to 5Thumbs</h1>
       <h2>Learn how to make your money work for you</h2>
+      <a href="Login.php" class="btn-get-started scrollto">I have an account</a>
+      <br>
+      <h2>Haven't signed up?<h2>
       <a href="Registration.php" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section>

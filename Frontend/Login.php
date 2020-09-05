@@ -19,50 +19,49 @@ require_once '../Backend/common.php';
 
 ?>
 
-
-
 <html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> BIOS </title>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-    <style>
-        html * {
-            font-family: Arial !important;
-        }
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        p {
-            font-size: 20px;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
 
-        table {
-            border-collapse: collapse;
-            border: solid 2px #ccc;
-            font-size: 18px;
-        }
+  <!-- Bootstrap css -->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        table td {
-            padding: 10px;
-        }
+  <!-- Libraries CSS Files -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/modal-video/css/modal-video.min.css" rel="stylesheet">
 
-        .submit {
-            height: 30px;
-            width: 65px;
-            font-size: 16px;
-        }
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
 
-        #submitrow {
-            background-color: rgb(235, 235, 235);
-        }
-    </style>
-
+  <!-- =======================================================
+    Theme Name: eStartup
+    Theme URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
 </head>
-<body>
 
-<h1>BIOS</h1>
-    <hr>
-    <br>
-    <div id='standard'>
-    <p align=center> <b>Login</b> </p>
+<body>
+<section id="contact" class="padd-section wow fadeInUp">
+<div class="container">
+    <h1 align=center>Login</h1><br>
     <form action='Login_process.php' method='POST'>
         <table align=center>
             <tr>
@@ -75,12 +74,12 @@ require_once '../Backend/common.php';
             </tr>
             <tr>
                 <td colspan=2 align=center id=submitrow>
-                <input type='submit' class=submit value='Login'>
+                <br>
+                <button type="submit" value="Login">Login</button>
                 </td>
             </tr>
         </table>
         <br>
-        
     </form></div>
 </body>
 </html>

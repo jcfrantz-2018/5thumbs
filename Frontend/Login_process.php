@@ -37,7 +37,7 @@
         // No Errors
         // main.php
         //$_SESSION['account'] = $username;
-        header('Location: Start.php');
+        header('Location: Home.php');
         return;
     }    
     
