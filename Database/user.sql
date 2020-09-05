@@ -52,23 +52,23 @@ INSERT INTO `user` (`email`, `password`, `username`, `first_name`, `last_name`) 
 COMMIT;
 
 --
--- Table structure for table `T-dollars`
+-- Table structure for table `T_Dollars`
 --
 
-DROP TABLE IF EXISTS `T-dollars`;
-CREATE TABLE IF NOT EXISTS `T-dollars` (
+DROP TABLE IF EXISTS `T_Dollars`;
+CREATE TABLE IF NOT EXISTS `T_Dollars` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `T-dollars` int(255) NOT NULL,
+  `T_Dollars` int(255) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
--- Dumping data for table `T-dollars`
+-- Dumping data for table `T_Dollars`
 --
 
-INSERT INTO `T-dollars` (`email`, `username`, `T-dollars`) VALUES
+INSERT INTO `T_Dollars` (`email`, `username`, `T_Dollars`) VALUES
 ('alice@aaa.com', 'alice', 10),
 ('bob@bbb.com', 'bob', 20),
 ('calvin@ccc.com', 'calvin', 30);
