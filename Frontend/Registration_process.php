@@ -2,6 +2,8 @@
     require_once '../Backend/common.php';
 
     $dao = new UserDAO();
+    $T_dollardao = new T_DollarsDAO();
+
     $errors = [];
 
     $username = "";
@@ -56,6 +58,7 @@
         // main.php
         //$_SESSION['account'] = $username;
         $dao->addUser($email, $password, $username, $first_name, $last_name);
+        $T_dollardao->addUserT_Dollar($email, $username);
         header('Location: Login.php');
         return;
     }    
