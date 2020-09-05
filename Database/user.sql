@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,32 +45,33 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`email`, `password`, `username`) VALUES
-('alice@aaa.com', '123', 'alice'),
-('bob@bbb.com', '234', 'bob'),
-('calvin@ccc.com', '345', 'calvin');
+INSERT INTO `user` (`email`, `password`, `username`, `first_name`, `last_name`) VALUES
+('alice@aaa.com', '123', 'alice', 'Alice', 'Goh'),
+('bob@bbb.com', '234', 'bob', 'Bob', 'Ng'),
+('calvin@ccc.com', '345', 'calvin', 'Calvin', 'Lim');
 COMMIT;
 
 --
--- Table structure for table `epoints`
+-- Table structure for table `T-dollars`
 --
 
-DROP TABLE IF EXISTS `epoints`;
-CREATE TABLE IF NOT EXISTS `epoints` (
+DROP TABLE IF EXISTS `T-dollars`;
+CREATE TABLE IF NOT EXISTS `T-dollars` (
   `email` varchar(255) NOT NULL,
-  `epoints` int(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `T-dollars` int(255) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
--- Dumping data for table `epoints`
+-- Dumping data for table `T-dollars`
 --
 
-INSERT INTO `epoints` (`email`, `epoints`) VALUES
-('alice@aaa.com', 10),
-('bob@bbb.com', 20),
-('calvin@ccc.com', 30);
+INSERT INTO `T-dollars` (`email`, `username`, `T-dollars`) VALUES
+('alice@aaa.com', 'alice', 10),
+('bob@bbb.com', 'bob', 20),
+('calvin@ccc.com', 'calvin', 30);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
