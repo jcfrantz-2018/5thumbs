@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Start</title>
+  <title>Leaderboard</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -40,9 +40,6 @@
 <div class="container">
 <?php
 
-require_once '../Backend/common.php';
-require_once '../Backend/ConnectionManager.php';
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -54,7 +51,7 @@ $sql = "SELECT username, T_Dollars FROM T_Dollars ORDER by T_Dollars desc";
 $result = $conn->query($sql);
 
 $count = 0; 
-if (($result->num_rows) > 0 and ($count<1)) {
+if (($result->num_rows) > 0) {
 // output data of each row
 echo "<table class='table'>
         <div class='feature-block'>
@@ -63,8 +60,8 @@ echo "<table class='table'>
           <th>T Dollars</th>
         </tr>
 ";
-
-while($row = $result->fetch_assoc()) {
+//retrieves top 10
+while($row = $result->fetch_assoc() and ($count<10)) {
     echo "<tr><td>".$row["username"]."</td>"."<td>".$row["T_Dollars"]."</td></tr>";
     $count = $count + 1;
 }

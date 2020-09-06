@@ -14,7 +14,7 @@ $username = $_SESSION['username'];
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Asset</title>
+  <title>Investment</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -80,22 +80,9 @@ table.center {
 <?php
 
 $dao = new T_DollarsDAO();
-$asset_dao = new assetDAO();
-$liability_dao = new liabilityDAO();
 
 $amount = $dao->getT_DollarsbyUsername($username);
 $turn = 11;
-
-$asset_qns = $asset_dao->retrieveRandomAsset(10);
-$liability_qns = $liability_dao->retrieveRandomLiability(10);
-
-$liability_name = $liability_qns[mt_rand(0,9)]->getname();
-$liability_value = $liability_qns[mt_rand(0,9)]->getvalue();
-$liability_happiness = $liability_qns[mt_rand(0,9)]->gethappiness();
-
-$asset_name = $asset_qns[0]->getname();
-$asset_value = $asset_qns[0]->getvalue();
-
 ?>
 
 <script>
@@ -253,16 +240,16 @@ $asset_value = $asset_qns[0]->getvalue();
         </table><br><br>
 
         <div class="asset">
-        <h3><span id='asset_name'><?php echo $asset_name; ?></span>->
-            <span id='asset_value'><?php echo $asset_value; ?></span> t-dollars: 
+        <h3><span id='asset_name'>50g bar of gold</span>->
+            <span id='asset_value'>10</span> t-dollars: 
             <span id='asset_desc'>Expensive, but increases its value over time</span>
         </h3>
         </div>
     <br>
         <div class="liability">
         <h3>
-        <span id='liability_name'><?php echo $liability_name; ?></span>->
-        <span id='liability_value'><?php echo $liability_value; ?></span> t-dollars: 
+        <span id='liability_name'>Apple Airpods</span>->
+        <span id='liability_value'>5</span> t-dollars: 
         <span id ='liability_desc'>Increases your happiness greatly</span> 
         </h3>
         </div>

@@ -74,6 +74,69 @@ INSERT INTO `T_Dollars` (`email`, `username`, `T_Dollars`) VALUES
 ('calvin@ccc.com', 'calvin', 30);
 COMMIT;
 
+--
+-- Table structure for table `asset`
+--
+
+DROP TABLE IF EXISTS `asset`;
+CREATE TABLE IF NOT EXISTS `asset` (
+  `name` varchar(255) NOT NULL,
+  `value` int(255) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `asset`
+--
+
+INSERT INTO `asset` (`name`, `value`) VALUES
+('Asset 1', 10),
+('Asset 2', 5),
+('Asset 3', 15),
+('Asset 4', 20),
+('Asset 5', 12),
+('Asset 6', 8),
+('Asset 7', 3),
+('Asset 8', 9),
+('Asset 9', 11),
+('Asset 10', 21),
+('Asset 11', 17),
+('Asset 12', 30),
+('Asset 13', 29);
+COMMIT;
+
+--
+-- Table structure for table `liability`
+--
+
+DROP TABLE IF EXISTS `liability`;
+CREATE TABLE IF NOT EXISTS `liability` (
+  `name` varchar(255) NOT NULL,
+  `value` int(255) NOT NULL,
+  `happiness` int(255) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `liability`
+--
+
+INSERT INTO `liability` (`name`, `value`, `happiness`) VALUES
+('Liability 1', 2, 3),
+('Liability 2', 8, 12),
+('Liability 3', 11, 14),
+('Liability 4', 15, 12),
+('Liability 5', 16, 17),
+('Liability 6', 3, 5),
+('Liability 7', 9, 6),
+('Liability 8', 19, 14),
+('Liability 9', 11, 16),
+('Liability 10', 27, 25),
+('Liability 11', 31, 35),
+('Liability 12', 36, 28),
+('Liability 13', 21, 27);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
