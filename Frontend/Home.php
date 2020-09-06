@@ -54,6 +54,10 @@ require_once 'header.php';
         echo "<h1>Welcome ".$full_name."!<h1>";
         echo "<h3>You have {$T_dollars} T-dollars</h3>";
         ?>
+      <br>
+      <h4>Click on the links in the upper right corner to learn
+        about<br>the different ways money can work harder for you</h4>
+      <br>
       </div>
       </section>
 </body>
