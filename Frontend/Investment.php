@@ -93,43 +93,43 @@ table.center {
 $dao = new T_DollarsDAO();
 
 $amount = $dao->getT_DollarsbyUsername($username);
-$turn = 11;
+$turn = 0;
 ?>
 
 <script>
 
-    function deleteRow(obj) {
+    // function deleteRow(obj) {
         
-        var index = obj.parentNode.parentNode.rowIndex;
-        var table = document.getElementById("myTableData");
-        console.log(index);
-        var value = parseInt(document.getElementById("myTableData").rows[index].cells[3].innerHTML);
-        console.log(value);
-        var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        amount = amount + value;
-        document.getElementById("t-dollars").innerHTML = amount.toString();
-        setCookie('amount', amount.toString(), 7);
+    //     var index = obj.parentNode.parentNode.rowIndex;
+    //     var table = document.getElementById("myTableData");
+    //     console.log(index);
+    //     var value = parseInt(document.getElementById("myTableData").rows[index].cells[3].innerHTML);
+    //     console.log(value);
+    //     var amount = parseInt(document.getElementById("t-dollars").innerHTML);
+    //     amount = amount + value;
+    //     document.getElementById("t-dollars").innerHTML = amount.toString();
+    //     setCookie('amount', amount.toString(), 7);
 
-        table.deleteRow(index);
+    //     table.deleteRow(index);
         
-    }
+    // }
 
-    function addRow(item,type,value) {
+    // function addRow(item,type,value) {
           
-          var item_chosen = item;
-          var item_type = type;
-          var item_value = value;
-          var table = document.getElementById("myTableData");
+    //       var item_chosen = item;
+    //       var item_type = type;
+    //       var item_value = value;
+    //       var table = document.getElementById("myTableData");
        
-          var rowCount = table.rows.length;
-          var row = table.insertRow(rowCount);
+    //       var rowCount = table.rows.length;
+    //       var row = table.insertRow(rowCount);
        
-          row.insertCell(0).innerHTML= '<input type="button" value = "Sell" onClick="Javacsript:deleteRow(this)">';
-          row.insertCell(1).innerHTML= item_chosen;
-          row.insertCell(2).innerHTML= item_type;
-          row.insertCell(3).innerHTML= item_value;
+    //       row.insertCell(0).innerHTML= '<input type="button" value = "Sell" onClick="Javacsript:deleteRow(this)">';
+    //       row.insertCell(1).innerHTML= item_chosen;
+    //       row.insertCell(2).innerHTML= item_type;
+    //       row.insertCell(3).innerHTML= item_value;
        
-    }
+    // }
 
     function resetProgress() {
         var amount = "<?php echo $amount ?>";
@@ -178,8 +178,28 @@ $turn = 11;
         document.cookie = name + "=" + (value || "")  + expires + "; path=/";
     }
 
-    function chooseAsset() {
+    function chooseWithdraw() {
+//still editing
+        var turn = parseInt(document.getElementById("turn").innerHTML);
+        turn = turn + 1;
 
+        var amount = parseInt(document.getElementById("t-dollars").innerHTML);
+        
+        var item = document.getElementById("withdraw_name").innerHTML;
+
+        var value = parseInt(document.getElementById("withdraw_value").innerHTML);
+
+        amount = amount - value;
+        
+        document.getElementById('turn').innerHTML = turn.toString();
+        document.getElementById("t-dollars").innerHTML = amount.toString();
+        setCookie('turn', turn.toString(), 7);
+        setCookie('amount', amount.toString(), 7);
+
+
+    }
+    function chooseDeposit() {
+//still editing
         var turn = parseInt(document.getElementById("turn").innerHTML);
         turn = turn + 1;
 
@@ -188,56 +208,26 @@ $turn = 11;
         var item = document.getElementById("asset_name").innerHTML;
 
         var value = parseInt(document.getElementById("asset_value").innerHTML);
-
-        amount = amount - value;
         
-        // var rand = Math.floor(Math.random() * 90) + 10;
-        // document.getElementById("h1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
-        // document.getElementById("turn").innerHTML = (turn + 1)
+        amount = amount + value;
+        
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
 
-        addRow(item, 'Asset', value);
 
     }
 
-    function chooseLiability() {
-
-        var turn = parseInt(document.getElementById("turn").innerHTML);
-        turn = turn + 1;
-
-        var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        
-        var item = document.getElementById("liability_name").innerHTML;
-
-        var value = parseInt(document.getElementById("liability_value").innerHTML);
-        
-        amount = amount - value;
-
-        // var rand = Math.floor(Math.random() * 90) + 10;
-        // document.getElementById("h1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
-        // document.getElementById("turn").innerHTML = (turn + 1)
-        document.getElementById('turn').innerHTML = turn.toString();
-        document.getElementById("t-dollars").innerHTML = amount.toString();
-        setCookie('turn', turn.toString(), 7);
-        setCookie('amount', amount.toString(), 7);
-
-        addRow(item,'Liability',value);
-
-    }
-
-    
 
 </script>
 <div>
+<h1>Deposit or withdraw?<br><br></h1>
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
 
      <table id="MarketData" class="center"  border="1" cellpadding="2">
         <tr>
-            
             <td><b>Exchange Name</b></td>
             <td><b>Symbol</b></td>
             <td><b>Change</b></td>
@@ -255,12 +245,10 @@ $turn = 11;
         ?>
         </table><br><br>
 
-        
         <h1>Turn:<span id='turn'></span></h1> <h1>T-Dollars:<span id='t-dollars'></span></h1><br>
-        <h1> Invest in assets and liabilities!<br> Assets gain value over time, 
-        while liabilities give immediate bonuses</h1><br><br>
+        <br><br>
         <h2 id='h2'>Wealth:</h2>
-        
+        <h2 id='h2'>Happiness:</h2>
         
         <table id="myTableData" class="center"  border="1" cellpadding="2">
         <tr>
@@ -271,23 +259,23 @@ $turn = 11;
         </tr>
         </table><br><br>
 
-        <div class="asset">
-        <h3><span id='asset_name'>50g bar of gold</span>->
-            <span id='asset_value'>10</span> t-dollars: 
-            <span id='asset_desc'>Expensive, but increases its value over time</span>
+        <div class="withdraw">
+        <h3><span id='withdraw_name'>Living expenses</span>->
+            <span id='withdraw_value'>1</span> t-dollars: 
+            <span id='withdraw_desc'>Withdrawing money allows you to buy things and increases your happiness</span>
         </h3>
         </div>
     <br>
-        <div class="liability">
+        <div class="deposit">
         <h3>
-        <span id='liability_name'>Apple Airpods</span>->
-        <span id='liability_value'>5</span> t-dollars: 
-        <span id ='liability_desc'>Increases your happiness greatly</span> 
+        <span id='deposit_name'>Deposit</span>->
+        <span id='deposit_value'>5</span> t-dollars: 
+        <span id ='deposit_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 2 T dollars 5 rounds later.</span> 
         </h3>
         </div>
-
-        <button onclick="chooseAsset()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Asset</button>  
-        <button onclick="chooseLiability()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Liability</button>
+        
+        <button onclick="chooseWithdraw()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Withdraw</button>  
+        <button onclick="chooseDeposit()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Deposit</button>
         <button onclick="resetProgress()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Reset Progress</button>
 
      </body>
