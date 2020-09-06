@@ -75,21 +75,21 @@ INSERT INTO `T_Dollars` (`email`, `username`, `T_Dollars`) VALUES
 COMMIT;
 
 --
--- Table structure for table `assets`
+-- Table structure for table `asset`
 --
 
-DROP TABLE IF EXISTS `assets`;
-CREATE TABLE IF NOT EXISTS `assets` (
+DROP TABLE IF EXISTS `asset`;
+CREATE TABLE IF NOT EXISTS `asset` (
   `name` varchar(255) NOT NULL,
   `value` int(255) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `assets`
+-- Dumping data for table `asset`
 --
 
-INSERT INTO `assets` (`name`, `value`) VALUES
+INSERT INTO `asset` (`name`, `value`) VALUES
 ('Asset 1', 10),
 ('Asset 2', 5),
 ('Asset 3', 15),
@@ -106,11 +106,11 @@ INSERT INTO `assets` (`name`, `value`) VALUES
 COMMIT;
 
 --
--- Table structure for table `liabilities`
+-- Table structure for table `liability`
 --
 
-DROP TABLE IF EXISTS `liabilities`;
-CREATE TABLE IF NOT EXISTS `liabilities` (
+DROP TABLE IF EXISTS `liability`;
+CREATE TABLE IF NOT EXISTS `liability` (
   `name` varchar(255) NOT NULL,
   `value` int(255) NOT NULL,
   `happiness` int(255) NOT NULL,
@@ -118,10 +118,10 @@ CREATE TABLE IF NOT EXISTS `liabilities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `assets`
+-- Dumping data for table `liability`
 --
 
-INSERT INTO `liabilities` (`name`, `value`, `happiness`) VALUES
+INSERT INTO `liability` (`name`, `value`, `happiness`) VALUES
 ('Liability 1', 2, 3),
 ('Liability 2', 8, 12),
 ('Liability 3', 11, 14),
