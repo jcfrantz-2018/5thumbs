@@ -53,50 +53,92 @@ $username = $_SESSION['username'];
 $dao = new T_DollarsDAO();
 
 $amount = $dao->getT_DollarsbyUsername($username);
-$turn = 1;
 
 ?>
 
 <html>
-<div>
-  <id="game" align=center style="text_align:center">
-     <body>
-        <p id='p1'>Turn:<?php echo $turn ?> &nbsp T-Dollars:<?php echo $amount ?></p>
-
-        <button onclick="myRisk()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Risk</button>  
-        <button onclick="mySafe()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Safe</button>
-
+<div style="text-align: center; border: 5px solid; margin-left: 400px; margin-right: 400px;background-color:green">
+    <body>
+      <div style="display: inline">
+        <p id='p0' style="margin-top: 50px; margin-right: 150px;font-weight: 700;color: black;font-size: 20px">Clicks: 0</p>
+        <p id='p1' style="margin-bottom: 100px; margin-top: -59px; margin-left: 150px;font-weight: 700;color: black;font-size: 20px">T-Dollars: 100</p>
+      </div>  
+      <div class="button-wrapper" style="text-align:center;display:inline-block; margin:10px;">
+        <p id='p2' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px">20% chance Increase by 2X</p>
+        <p id='p3' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px">80% chance Decrease to 0.5X</p>
+        <button id="apt" onclick="myRisk()" style="background-color:red;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">A</button>
+      </div>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <div class="button-wrapper" style="text-align:center;display:inline-block; margin:10px;">
+        <p id='p4' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px">30% chance Increase by 1.5X</p>
+        <p id='p5' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px">70% chance Decrease to 0.75X</p>
+        <button id="opt" onclick="mySafe()" style="background-color:red;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">B</button>
+      </div>
      </body>
+
 <script>
 
-function myRisk() {
-  var total = 0;
-  var amount = "<?php echo $amount ?>";
-  var turn = "<?php echo $turn ?>";
-  var rand = Math.floor(Math.random() * 90) + 10;
+var given1 = 20;
+var given2 = 30;
+var total1 = 20;
+var total2 = 30;
+function amount(a, b){
+   amount = a * b;
+   a = amount
+   return amount;
+}
 
-  if(rand > 50){
-      document.getElementById("p1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
-} else {
-      document.getElementById("p1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 0.5);
-}
-}
+var count = (function () {
+  var counter = 0;
+  return function () {
+    return counter +=1;
+    }
+})();
+
+// function myRisk() {
+//   var rand = Math.floor(Math.random() * 90) + 10;
+
+//   if(rand > 50){
+//     document.getElementById("p0").innerHTML = "Clicks: " + clicks;
+//       document.getElementById("p1").innerHTML = "T-Dollars: " + (amount * 2)amount;
+//       document.getElementById("p2").innerHTML = rand + "% chance Increase by 2X";
+//       document.getElementById("p3").innerHTML = (100-rand) + "% chance Decrease to 0.5X";
+
+// } else {
+//   document.getElementById("p0").innerHTML = "Clicks: " + clicks;
+//       document.getElementById("p1").innerHTML = "T-Dollars: " + (amount * 0.5)amount;
+//       document.getElementById("p2").innerHTML = rand + "% chance Increase by 2X";
+//       document.getElementById("p3").innerHTML = (100-rand) + "% chance Decrease to 0.5X";
+// }
+// }
 
 function mySafe() {
-  var total = 0;
-  var amount = "<?php echo $amount ?>";
-  var turn = parseInt("<?php echo $turn ?>");
-  var rand = Math.floor(Math.random() * 90) + 10;
-  var turn = turn + 1;
 
-  if(rand > 30){
-      document.getElementById("p1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 1.5);
+  var rand1 = Math.floor(Math.random() * 101);
+  var rand2 = Math.floor(Math.random() * 81) + 10;
+
+  if(rand1 > given2){
+      document.getElementById("p0").innerHTML = "Clicks: " + count();
+      document.getElementById("p1").innerHTML = "T-Dollars: " + amount(100, 1.5);
+      document.getElementById("p4").innerHTML = rand2 + "% chance Increase by 1.5X";
+      document.getElementById("p5").innerHTML = (100-rand2) + "% chance Decrease to 0.75X";
+      given2 = rand2;
 } else {
-      document.getElementById("p1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 0.75);
-}
-}
+      document.getElementById("p0").innerHTML = "Clicks: " + count();
+      document.getElementById("p1").innerHTML = "T-Dollars: " + amount(100, 1.5);
+      document.getElementById("p4").innerHTML = rand2 + "% chance Increase by 1.5X";
+      document.getElementById("p5").innerHTML = (100-rand2) + "% chance Decrease to 0.75X";
+      given2 = rand2;
 
+}
+}
 </script>
+</body>
+</div>
+<br>
+<div style="text-align: center;border: 5px solid;margin-left: 500px; margin-right: 500px ">
+<p style="margin-top: 5%">Your risk appetite is:</p>
+<p>Your risk tolerance is:</p>
 </div>
 <html>
 
