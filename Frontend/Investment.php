@@ -237,7 +237,7 @@ $turn = 11;
 
      <table id="MarketData" class="center"  border="1" cellpadding="2">
         <tr>
-            <td>&nbsp;</td>
+            
             <td><b>Exchange Name</b></td>
             <td><b>Symbol</b></td>
             <td><b>Change</b></td>
@@ -246,10 +246,10 @@ $turn = 11;
         <?php
         foreach ($market_info as $one_market){
             echo "<tr>
-                    <td>$one_market['fullExchangeName']</td>
-                    <td>$one_market['symbol']</td>
-                    <td>$one_market['regularMarketChangePercent]['fmt']</td>
-                    <td>$one_market['regularMarketPrice]['fmt']</td>
+                    <td>{$one_market['fullExchangeName']}</td>
+                    <td>{$one_market['symbol']}</td>
+                    <td>{$one_market['regularMarketChangePercent']['fmt']}</td>
+                    <td>{$one_market['regularMarketPrice']['fmt']}</td>
             </tr>"; 
         }
         ?>
