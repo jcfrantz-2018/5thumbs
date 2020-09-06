@@ -138,6 +138,11 @@ $turn = 0;
         setCookie('amount', amount.toString(), 7);
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
+
+        setCookie('happiness', happiness.toString(), 7);
+        setCookie('wealth', wealth.toString(), 7);
+        document.getElementById('happiness').innerHTML = happiness.toString();
+        document.getElementById('wealth').innerHTML = wealth.toString();
     }
 
     function getCookie(cname) {
@@ -190,13 +195,22 @@ $turn = 0;
         var value = parseInt(document.getElementById("withdraw_value").innerHTML);
 
         amount = amount - value;
-        
+
+        var wealth = parseInt(document.getElementById("wealth").innerHTML);
+        var happiness = parseInt(document.getElementById("happiness").innerHTML);
+       
+        wealth = wealth - 1;
+        happiness = happiness + 1;
+
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
 
-
+        document.getElementById('wealth').innerHTML = wealth.toString();
+        document.getElementById("happiness").innerHTML = happiness.toString();
+        setCookie('wealth', turn.toString(), 7);
+        setCookie('happiness', turn.toString(), 7);
     }
     function chooseDeposit() {
 //still editing
@@ -204,21 +218,59 @@ $turn = 0;
         turn = turn + 1;
 
         var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        
-        var item = document.getElementById("asset_name").innerHTML;
 
-        var value = parseInt(document.getElementById("asset_value").innerHTML);
+        var item = document.getElementById("deposit_name").innerHTML;
+
+        var value = parseInt(document.getElementById("deposit_value").innerHTML);
         
+        var wealth = parseInt(document.getElementById("wealth").innerHTML);
+        var happiness = parseInt(document.getElementById("happiness").innerHTML);
+
+        var delayInMilliseconds = 5000; //5 seconds
+        setTimeout(function() {
+            amount = amount + 2;
+        }, delayInMilliseconds);
+
         amount = amount + value;
+        wealth = wealth + 1;
+
+        document.getElementById('turn').innerHTML = turn.toString();
+        document.getElementById('t-dollars').innerHTML = amount.toString();
+        setCookie('turn', turn.toString(), 7);
+        setCookie('amount', amount.toString(), 7);
+
+        document.getElementById('wealth').innerHTML = wealth.toString();
+        setCookie('wealth', wealth.toString(), 7);
+    }
+    function chooseInvest() {
+//still editing
+        var turn = parseInt(document.getElementById("turn").innerHTML);
+        turn = turn + 1;
+
+        var amount = parseInt(document.getElementById("t-dollars").innerHTML);
         
+        var item = document.getElementById("withdraw_name").innerHTML;
+
+        var value = parseInt(document.getElementById("withdraw_value").innerHTML);
+
+        amount = amount - value;
+
+        var wealth = parseInt(document.getElementById("wealth").innerHTML);
+        var happiness = parseInt(document.getElementById("happiness").innerHTML);
+       
+        wealth = wealth - 1;
+        happiness = happiness + 1;
+
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
 
-
+        document.getElementById('wealth').innerHTML = wealth.toString();
+        document.getElementById("happiness").innerHTML = happiness.toString();
+        setCookie('wealth', turn.toString(), 7);
+        setCookie('happiness', turn.toString(), 7);
     }
-
 
 </script>
 <div>
@@ -245,38 +297,38 @@ $turn = 0;
         ?>
         </table><br><br>
 
-        <h1>Turn:<span id='turn'></span></h1> <h1>T-Dollars:<span id='t-dollars'></span></h1><br>
+        <h1>Turn: <span id='turn'></span></h1> <h1>T-Dollars: <span id='t-dollars'></span></h1><br>
         <br><br>
-        <h2 id='h2'>Wealth:</h2>
-        <h2 id='h2'>Happiness:</h2>
-        
-        <table id="myTableData" class="center"  border="1" cellpadding="2">
-        <tr>
-            <td>&nbsp;</td>
-            <td><b>Item</b></td>
-            <td><b>Type</b></td>
-            <td><b>Value</b></td>
-        </tr>
-        </table><br><br>
+        <h2 id='h2'>Wealth:<span id='wealth'> 0</span></h2>
+        <h2 id='h2'>Happiness:<span id='happiness'> 0</span></h2>
 
         <div class="withdraw">
         <h3><span id='withdraw_name'>Living expenses</span>->
             <span id='withdraw_value'>1</span> t-dollars: 
             <span id='withdraw_desc'>Withdrawing money allows you to buy things and increases your happiness</span>
-        </h3>
+        </h3>   
         </div>
     <br>
         <div class="deposit">
         <h3>
         <span id='deposit_name'>Deposit</span>->
         <span id='deposit_value'>5</span> t-dollars: 
-        <span id ='deposit_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 2 T dollars 5 rounds later.</span> 
+        <span id ='deposit_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 10% interest of money after 20s.</span> 
         </h3>
         </div>
         
-        <button onclick="chooseWithdraw()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Withdraw</button>  
-        <button onclick="chooseDeposit()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Deposit</button>
-        <button onclick="resetProgress()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Reset Progress</button>
+        <div class="invest">
+        <h3>
+        <span id='invest_name'>Invest</span>->
+        <span id='invest_value'>5</span> t-dollars: 
+        <span id ='invest_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 10% interest of money after 20s.</span> 
+        </h3>
+        </div>
+
+        <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
+        <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Deposit</button>
+        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Invest</button>
+        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
 
      </body>
 
