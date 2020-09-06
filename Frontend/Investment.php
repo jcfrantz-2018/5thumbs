@@ -4,7 +4,17 @@ require_once '../Backend/common.php';
 require_once '../Backend/FinanceAPI.php';
 require_once 'header.php';
 
-$username = $_SESSION['username'];
+if (isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+
+
+if (isset($_SESSION['market_summary'])){
+    $market_summary = $_SESSION['market_summary']; 
+    $market_info = $market_summary['marketSummaryResponse']['result']; 
+}
+
+
 
 ?>
 
@@ -223,6 +233,27 @@ $turn = 11;
 <div>
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
+
+     <table id="MarketData" class="center"  border="1" cellpadding="2">
+        <tr>
+            <td>&nbsp;</td>
+            <td><b>Exchange Name</b></td>
+            <td><b>Symbol</b></td>
+            <td><b>Change</b></td>
+            <td><b>Price</b></td>
+        </tr>
+        <?php
+        foreach ($market_info as $one_market){
+            echo "<tr>
+                    <td>$one_market['fullExchangeName']</td>
+                    <td>$one_market['symbol']</td>
+                    <td>$one_market['regularMarketChangePercent]['fmt']</td>
+                    <td>$one_market['regularMarketPrice]['fmt']</td>
+            </tr>"; 
+        }
+        ?>
+        </table><br><br>
+
         
         <h1>Turn:<span id='turn'></span></h1> <h1>T-Dollars:<span id='t-dollars'></span></h1><br>
         <h1> Invest in assets and liabilities!<br> Assets gain value over time, 

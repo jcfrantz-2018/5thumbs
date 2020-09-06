@@ -23,15 +23,9 @@ function get_market_summary(){
 	));
 
 	$response = curl_exec($curl);
-	$err = curl_error($curl);
 
 	curl_close($curl);
-
-	if ($err) {
-		$data = $err; 
-	} else {
-		$data =  $response;
-	}
+	$data = json_decode($response, true); 
 
 	return $data; 
 }
@@ -75,7 +69,7 @@ function get_stock(){
 	return $data; 
 		}
 
-		
+
 $_SESSION['market_summary'] = get_market_summary(); 
 $_SESSION['stocks'] = get_stock(); 
 
