@@ -45,6 +45,35 @@ $username = $_SESSION['username'];
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
+  <style>
+  h1 {
+  text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.asset {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.liability {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+  </style>
 </head>
 
 <?php
@@ -200,7 +229,7 @@ $turn = 11;
         <h2 id='h2'>Wealth:</h2>
         
         
-        <table id="myTableData"  border="1" cellpadding="2">
+        <table id="myTableData" class="center"  border="1" cellpadding="2">
         <tr>
             <td>&nbsp;</td>
             <td><b>Item</b></td>
@@ -209,21 +238,24 @@ $turn = 11;
         </tr>
         </table><br><br>
 
-
-        <h2><span id='asset_name'>50g bar of gold</span>->
+        <div class="asset">
+        <h3><span id='asset_name'>50g bar of gold</span>->
             <span id='asset_value'>10</span> t-dollars: 
             <span id='asset_desc'>Expensive, but increases its value over time</span>
-        </h2>
-
-        <h2>
+        </h3>
+        </div>
+    <br>
+        <div class="liability">
+        <h3>
         <span id='liability_name'>Apple Airpods</span>->
         <span id='liability_value'>5</span> t-dollars: 
         <span id ='liability_desc'>Increases your happiness greatly</span> 
-        </h2>
+        </h3>
+        </div>
 
-        <button onclick="chooseAsset()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Asset</button>  
-        <button onclick="chooseLiability()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Liability</button>
-        <button onclick="resetProgress()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Reset Progress</button>
+        <button onclick="chooseAsset()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Asset</button>  
+        <button onclick="chooseLiability()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Liability</button>
+        <button onclick="resetProgress()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Reset Progress</button>
 
      </body>
 
