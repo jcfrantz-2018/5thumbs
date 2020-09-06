@@ -1,5 +1,6 @@
 <?php
 require_once '../Backend/common.php';
+require_once '../Backend/FinanceAPI.php';
 ?>
 
 <!DOCTYPE html>

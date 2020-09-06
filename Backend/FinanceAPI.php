@@ -1,14 +1,16 @@
 <?php
 
+function FinanceAPI(){
+
 $curl = curl_init();
 
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?region=US&symbol=AMRN",
+	CURLOPT_URL => "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=US&lang=en",
 	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_SSL_VERIFYHOST => false, 
+    CURLOPT_SSL_VERIFYPEER => false, 
 	CURLOPT_ENCODING => "",
 	CURLOPT_MAXREDIRS => 10,
 	CURLOPT_TIMEOUT => 30,
@@ -26,10 +28,15 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-	echo "cURL Error #:" . $err;
+	$data = $err; 
 } else {
-	echo $response;
+	$data =  $response;
 }
+
+return $data; 
+}
+
+$SESSION['FinanceAPI'] = FinanceAPI(); 
 
 
 ?>
