@@ -66,7 +66,7 @@ $odds4 = 60;
 ?>
 
 <html>
-<div style="text-align: center; border: 5px solid; margin-left: 300px; margin-right: 300px; height: 500px;background-color:green">
+<div style="text-align: center; border: 5px solid; margin-left: 300px; margin-right: 300px; height: 500px;background-color:#b5cee6; border-radius: 8px">
     <body onload="checkCookie()">
       <div style="display: inline">
         <p style="margin-top: 25px; margin-bottom: -25px; text-align: center;font-weight: 700;color: black;font-size: 20px">For an estimated risk appetite and risk tolerance, make at least 10 decisions.</p>
@@ -74,17 +74,17 @@ $odds4 = 60;
         <p id='p1' style="margin-bottom: 100px; margin-top: -59px; margin-left: 150px;font-weight: 700;color: black;font-size: 20px">T-Dollars: <span id='t-dollars'></span></p>
       </div>  
       <div class="button-wrapper" style="text-align:center;display:inline-block; margin:10px;">
-        <p id='p2' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px"><span id='odds1'></span>% chance Increase by 2X</p>
-        <p id='p3' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px"><span id='odds2'></span>% chance Decrease to 0.5X</p>
-        <button id="apt" onclick="myRisk(); calculate1(); app(); tol();" style="background-color:red;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">A</button>
+        <p id='p2' style="padding: 5px; background-color:#1979a9;color:black;margin-bottom: -10px"><span id='odds1'></span>% chance Increase by 2X</p>
+        <p id='p3' style="padding: 5px; background-color:#1979a9;color:black;margin-bottom: -10px"><span id='odds2'></span>% chance Decrease to 0.5X</p>
+        <button id="apt" onclick="myRisk(); calculate1(); app(); tol();" style="background-color:white;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">A</button>
       </div>
         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-      <button onclick="resetProgress()" style="background-color:red;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Reset Progress</button>
+      <button onclick="resetProgress()" style="background-color:white;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Reset Progress</button>
         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
       <div class="button-wrapper" style="text-align:center;display:inline-block; margin:10px;">
-        <p id='p4' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px"><span id='odds3'></span>% chance Increase by 1.5X</p>
-        <p id='p5' style="padding: 5px; background-color:yellow;color:black;margin-bottom: -10px"><span id='odds4'></span>% chance Decrease to 0.75X</p>
-        <button id="opt" onclick="mySafe(); calculate2(); app(); tol();" style="background-color:red;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">B</button>
+        <p id='p4' style="padding: 5px; background-color:#1979a9;color:black;margin-bottom: -10px"><span id='odds3'></span>% chance Increase by 1.5X</p>
+        <p id='p5' style="padding: 5px; background-color:#1979a9;color:black;margin-bottom: -10px"><span id='odds4'></span>% chance Decrease to 0.75X</p>
+        <button id="opt" onclick="mySafe(); calculate2(); app(); tol();" style="background-color:white;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:5%; width: 50px">B</button>
       </div>
      </body>
 

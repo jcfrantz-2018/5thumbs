@@ -57,10 +57,9 @@ require_once '../Backend/common.php';
     License: https://bootstrapmade.com/license/
   ======================================================= -->
 </head>
-
 <body>
-<section id="contact" class="padd-section wow fadeInUp">
-<div class="container">
+<section id="hero" class="wow fadeIn">
+    <div class="hero-container">
     <h1 align=center>Login</h1><br>
     <form action='Login_process.php' method='POST'>
         <table align=center>

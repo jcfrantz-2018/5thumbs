@@ -249,9 +249,10 @@ $turn = 0;
 
         var amount = parseInt(document.getElementById("t-dollars").innerHTML);
         
-        var item = document.getElementById("withdraw_name").innerHTML;
+        var item = document.getElementById("invest_name").innerHTML;
 
-        var value = parseInt(document.getElementById("withdraw_value").innerHTML);
+        var value = parseInt(document.getElementById("invest_value").innerHTML);
+        
 
         amount = amount - value;
 
@@ -274,7 +275,7 @@ $turn = 0;
 
 </script>
 <div>
-<h1>Deposit or withdraw?<br><br></h1>
+<h1>Deposit, invest or withdraw?<br><br></h1>
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
 
@@ -309,6 +310,7 @@ $turn = 0;
         </h3>   
         </div>
     <br>
+        <container>
         <div class="deposit">
         <h3>
         <span id='deposit_name'>Deposit</span>->
@@ -321,15 +323,16 @@ $turn = 0;
         <h3>
         <span id='invest_name'>Invest</span>->
         <span id='invest_value'>5</span> t-dollars: 
-        <span id ='invest_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 10% interest of money after 20s.</span> 
+        <span id ='invest_desc'>Investing money allows you to earn in the long run. When you invest, you will earn 10% interest.</span> 
         </h3>
         </div>
-
+        <div>
         <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
         <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Deposit</button>
-        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Invest</button>
+        <button onclick="chooseInvest()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Invest</button>
         <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
-
+    </div>
+    </container>
      </body>
 
 
