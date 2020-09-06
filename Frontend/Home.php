@@ -1,6 +1,7 @@
 <?php
 require_once '../Backend/common.php';
 require_once '../Backend/FinanceAPI.php';
+require_once 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +46,17 @@ require_once '../Backend/FinanceAPI.php';
 <body>
     <section id="home" class="wow fadeIn">
         <div class="hero-container">
+          <div  class="section-title text-center">
+          <img src="img/svg/paint-palette.svg" alt="img" class="img-fluid">
           <?php
           $userObj = new UserDAO;
+          $TdollarsObj = new T_DollarsDAO;
           $full_name = $userObj->getFullName($_SESSION["username"]);
-          echo "<h1>Welcome ".$full_name."<h1><br>";
+          $T_dollars = $TdollarsObj-> getT_DollarsbyUsername($_SESSION["username"]);
+          echo "<h1>Welcome ".$full_name."!<h1>";
+          echo "<h3>You have {$T_dollars} T-dollars</h3>";
           ?>
-          
+          </div>
         </div>
       </section>
 </body>
