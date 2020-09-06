@@ -38,6 +38,8 @@
 <body>
 <section class="padd-section text-center wow fadeInUp">
 <div class="container">
+<h1>Top players</h1>
+<br>
 <?php
 
 $servername = "localhost";
