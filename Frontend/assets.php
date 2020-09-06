@@ -89,13 +89,36 @@ $turn = 11;
 $asset_qns = $asset_dao->retrieveRandomAsset(10);
 $liability_qns = $liability_dao->retrieveRandomLiability(10);
 
-$liability_name = $liability_qns[mt_rand(0,9)]->getname();
-$liability_value = $liability_qns[mt_rand(0,9)]->getvalue();
-$liability_happiness = $liability_qns[mt_rand(0,9)]->gethappiness();
+// $liability_name = $liability_qns[0]->getname();
+// $liability_value = $liability_qns[0]->getvalue();
+// $liability_happiness = $liability_qns[0]->gethappiness();
 
-$asset_name = $asset_qns[0]->getname();
-$asset_value = $asset_qns[0]->getvalue();
+// $asset_name = $asset_qns[0]->getname();
+// $asset_value = $asset_qns[0]->getvalue();
+$i = 1;
+$j = 1;
+foreach($asset_qns as $asset) {
+    $name = $asset->getname();
+    $value = $asset->getvalue();
+    $assetname = 'assetname' . strval($i);
+    $assetvalue = 'assetvalue' . strval($i);
+    setcookie($assetname, $name, 0, "/");
+    setcookie($assetvalue, $value, 0, "/");
+    $i++;
+}
 
+foreach($liability_qns as $liability) {
+    $name = $liability->getname();
+    $value = $liability->getvalue();
+    $happiness = $liability->gethappiness();
+    $liabilityname = 'liabilityname' . strval($j);
+    $liabilityvalue = 'liabilityvalue' . strval($j);
+    $liabilityhappiness = 'liabilityhappiness' . strval($j);
+    setcookie($liabilityname, $name, 0, "/");
+    setcookie($liabilityvalue, $value, 0, "/");
+    setcookie($liabilityhappiness, $happiness, 0, "/");
+    $j++;
+}
 ?>
 
 <script>
@@ -145,6 +168,7 @@ $asset_value = $asset_qns[0]->getvalue();
     function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
+    decodedCookie = decodedCookie.replace('+', ' ');
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
         var c = ca[i];
@@ -158,18 +182,6 @@ $asset_value = $asset_qns[0]->getvalue();
     return "";
     }
 
-    function checkCookie() {
-        var amount = getCookie("amount");
-        var turn = getCookie("turn");
-
-        if (amount == '' || turn == '') {
-            var amount = "<?php echo $amount ?>";
-            var turn = "<?php echo $turn ?>";
-        }
-        document.getElementById('turn').innerHTML = turn;
-        document.getElementById('t-dollars').innerHTML = amount;
-    }
-
     function setCookie(name,value,days) {
         var expires = "";
         if (days) {
@@ -178,6 +190,33 @@ $asset_value = $asset_qns[0]->getvalue();
             expires = "; expires=" + date.toUTCString();
         }
         document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function checkCookie() {
+        var amount = getCookie("amount");
+        var turn = getCookie("turn");
+
+        var asset_name = getCookie("assetname1");
+        var asset_value = getCookie("assetvalue1");
+
+        var liability_name = getCookie("liabilityname1");
+        var liability_value = getCookie("liabilityvalue1");
+
+        var num_of_turns = 1;
+        setCookie('num_of_turns', num_of_turns, 7);
+
+        if (amount == '' || turn == '') {
+            var amount = "<?php echo $amount ?>";
+            var turn = "<?php echo $turn ?>";
+        }
+        document.getElementById('turn').innerHTML = turn;
+        document.getElementById('t-dollars').innerHTML = amount;
+        
+        document.getElementById('asset_name').innerHTML = asset_name;
+        document.getElementById('asset_value').innerHTML = asset_value;
+
+        document.getElementById('liability_name').innerHTML = liability_name.replace('+',' ');
+        document.getElementById('liability_value').innerHTML = liability_value;
     }
 
     function chooseAsset() {
@@ -201,6 +240,28 @@ $asset_value = $asset_qns[0]->getvalue();
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
 
+        var num_of_turns = parseInt(getCookie("num_of_turns"));
+        num_of_turns = num_of_turns + 1;
+        var num_of_turns = num_of_turns.toString();
+        setCookie('num_of_turns', num_of_turns, 7);
+
+        var asset_name = "assetname"
+        asset_name = asset_name.concat(num_of_turns);
+
+        var asset_value = "assetvalue"
+        asset_value = asset_value.concat(num_of_turns);
+
+        var liability_name = "liabilityname"
+        liability_name = liability_name.concat(num_of_turns);
+        var liability_value = "liabilityvalue"
+        liability_value = liability_value.concat(num_of_turns);
+
+        console.log(asset_name);
+        document.getElementById("asset_name").innerHTML = getCookie(asset_name);
+        document.getElementById("asset_value").innerHTML = getCookie(asset_value);
+        document.getElementById("liability_name").innerHTML = getCookie(liability_name);
+        document.getElementById("liability_value").innerHTML = getCookie(liability_value);
+
         addRow(item, 'Asset', value);
 
     }
@@ -218,13 +279,32 @@ $asset_value = $asset_qns[0]->getvalue();
         
         amount = amount - value;
 
-        // var rand = Math.floor(Math.random() * 90) + 10;
-        // document.getElementById("h1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
-        // document.getElementById("turn").innerHTML = (turn + 1)
+        
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
+
+        var num_of_turns = parseInt(getCookie("num_of_turns"));
+        num_of_turns = num_of_turns + 1;
+        var num_of_turns = num_of_turns.toString();
+        setCookie('num_of_turns', num_of_turns, 7);
+
+        var asset_name = "assetname"
+        asset_name = asset_name.concat(num_of_turns);
+
+        var asset_value = "assetvalue"
+        asset_value = asset_value.concat(num_of_turns);
+
+        var liability_name = "liabilityname"
+        liability_name = liability_name.concat(num_of_turns);
+        var liability_value = "liabilityvalue"
+        liability_value = liability_value.concat(num_of_turns);
+
+        document.getElementById("asset_name").innerHTML = getCookie(asset_name);
+        document.getElementById("asset_value").innerHTML = getCookie(asset_value);
+        document.getElementById("liability_name").innerHTML = getCookie(liability_name);
+        document.getElementById("liability_value").innerHTML = getCookie(liability_value);
 
         addRow(item,'Liability',value);
 
