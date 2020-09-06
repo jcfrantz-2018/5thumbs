@@ -41,7 +41,6 @@
 <?php
 
 require_once '../Backend/common.php';
-require_once '../Backend/ConnectionManager.php';
 
 $servername = "localhost";
 $username = "root";
