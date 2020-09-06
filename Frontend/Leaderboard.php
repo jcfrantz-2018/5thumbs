@@ -35,42 +35,46 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
 </head>
-<?php
-
-require_once '../Backend/common.php';
-
-?>
 <body>
 <section class="padd-section text-center wow fadeInUp">
 <div class="container">
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "userinfo";
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-    $sql = "SELECT username, T_Dollars FROM T_Dollars ORDER by T_Dollars desc";
-    $result = $conn->query($sql);
-    
-    echo "<table class='table'>";
-    $count = 0;
-   
-    if (($result->num_rows) > 0 and ($count<1)) {
-    // output data of each row
-    
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row["username"]."</td>"."<td>".$row["T_Dollars"]."</td></tr>";
-        $count = $count + 1;
-    }
-    echo "</table>";
-    }
-    else {
-    echo "Still looking for our leaders!";
-    }
 
-    $conn->close();
+require_once '../Backend/common.php';
+require_once '../Backend/ConnectionManager.php';
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "userinfo";
+    
+$conn = new mysqli($servername, $username, $password, $dbname);
+    
+$sql = "SELECT username, T_Dollars FROM T_Dollars ORDER by T_Dollars desc";
+$result = $conn->query($sql);
+
+$count = 0; 
+if (($result->num_rows) > 0 and ($count<1)) {
+// output data of each row
+echo "<table class='table'>
+        <div class='feature-block'>
+        <tr>
+          <th>Username</th>
+          <th>T Dollars</th>
+        </tr>
+";
+
+while($row = $result->fetch_assoc()) {
+    echo "<tr><td>".$row["username"]."</td>"."<td>".$row["T_Dollars"]."</td></tr>";
+    $count = $count + 1;
+}
+echo "</table>";
+}
+else {
+echo "Still looking for our leaders!";
+}
+
+$conn->close();
 ?>
 </div>
 </body>
