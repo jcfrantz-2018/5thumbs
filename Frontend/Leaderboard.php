@@ -41,7 +41,7 @@
 <h1>Top players</h1>
 <br>
 <?php
-
+require_once '../Backend/common.php';
 $servername = "localhost";
 $username = "root";
 $password = "";

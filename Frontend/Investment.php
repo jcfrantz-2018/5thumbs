@@ -79,6 +79,7 @@ table.center {
 
 <?php
 
+
 $dao = new T_DollarsDAO();
 
 $amount = $dao->getT_DollarsbyUsername($username);
