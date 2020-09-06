@@ -1,8 +1,30 @@
+<?php
+
+require_once '../Backend/common.php';
+
+?>
+
+<?php
+
+// $T_dollars = new T_DollarsDAO;
+// $Leaderboard = $T_dollars->getUsername_T_Dollars();
+
+
+// $userObj = new UserDAO;
+// $Fullname = $userObj->getFullName('alice');
+
+// echo $Fullname;
+// echo '<br>';
+// print_r($Leaderboard);
+
+?>
+
+<html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>eStartup Bootstrap Template</title>
+  <title>Login</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -35,18 +57,33 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
 </head>
+
 <body>
-    <section id="hero" class="wow fadeIn">
-        <div class="hero-container">
-          <h1>Welcome</h1>
-          {?php
-              $_SESSION["favcolor"] = "green";
-          $_SESSION["favanimal"] = "cat";
-          echo "Favorite color is " . $_SESSION["username"]
-          ;}
-          <h2>Elegant Bootstrap Template for Startups, Apps &amp; more...</h2>
-          <img src="img/hero-img.png" alt="Hero Imgs">
-          <a href="#get-started" class="btn-get-started scrollto">Get Started</a>
-        </div>
-      </section><!-- #hero -->
+<section id="contact" class="padd-section wow fadeInUp">
+<div class="container">
+    <h1 align=center>Login</h1><br>
+    <form action='Login_process.php' method='POST'>
+        <table align=center>
+            <tr>
+                <td>Username: </td>
+                <td><input type='text' name='username'></td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td><input type='password' name='password'></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center id=submitrow>
+                <br>
+                <button type="submit" value="Login">Login</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </form></div>
 </body>
+</html>
+
+<?php
+    printErrors();
+?>

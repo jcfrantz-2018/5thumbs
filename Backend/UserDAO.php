@@ -30,6 +30,42 @@ class UserDAO {
         return $fullname;   
     }
 
+    public function addUser($email, $password, $username, $first_name, $last_name) {
+        $sql = 'INSERT INTO User (email, password, username, first_name, last_name) 
+                VALUES (:email, :password, :username, :first_name, :last_name)';
+    
+        $connMgr = new ConnectionManager();       
+        $conn = $connMgr->getConnection();
+        
+        $stmt = $conn->prepare($sql); 
+
+        $stmt->bindParam(':email', $email , PDO::PARAM_STR);
+        $stmt->bindParam(':password',$password , PDO::PARAM_STR);
+        $stmt->bindParam(':username',$username , PDO::PARAM_STR);
+        $stmt->bindParam(':first_name',$first_name , PDO::PARAM_STR);
+        $stmt->bindParam(':last_name',$last_name , PDO::PARAM_STR);
+
+        $isAddOK = False;
+        if ($stmt->execute()) {
+            $isAddOK = True;
+        }
+
+        if ($isAddOK === False) {
+            
+            $stmt = null;
+            $pdo = null;
+
+            return $stmt->errorInfo();
+        }
+
+        $stmt = null;
+        $pdo = null;
+
+        return $isAddOK;
+    }
+
+}
+
     // public function retrieveByCourse ($userid, $courseid) {
     //     $conn_manager = new ConnectionManager();
     //     $pdo = $conn_manager->getConnection();
@@ -255,4 +291,3 @@ class UserDAO {
 
     //     return $found;
     // }
-}
