@@ -57,11 +57,44 @@ $turn = 11;
 
 <script>
 
+    function deleteRow(obj) {
+        
+        var index = obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("myTableData");
+        console.log(index);
+        var value = parseInt(document.getElementById("myTableData").rows[index].cells[3].innerHTML);
+        console.log(value);
+        var amount = parseInt(document.getElementById("t-dollars").innerHTML);
+        amount = amount + value;
+        document.getElementById("t-dollars").innerHTML = amount.toString();
+        setCookie('amount', amount.toString(), 7);
+
+        table.deleteRow(index);
+        
+    }
+
+    function addRow(item,type,value) {
+          
+          var item_chosen = item;
+          var item_type = type;
+          var item_value = value;
+          var table = document.getElementById("myTableData");
+       
+          var rowCount = table.rows.length;
+          var row = table.insertRow(rowCount);
+       
+          row.insertCell(0).innerHTML= '<input type="button" value = "Sell" onClick="Javacsript:deleteRow(this)">';
+          row.insertCell(1).innerHTML= item_chosen;
+          row.insertCell(2).innerHTML= item_type;
+          row.insertCell(3).innerHTML= item_value;
+       
+    }
+
     function resetProgress() {
         var amount = "<?php echo $amount ?>";
         var turn = "<?php echo $turn ?>";
         setCookie('turn', turn.toString(), 7);
-        setCookie('amount', (amount * 2), 7);
+        setCookie('amount', amount.toString(), 7);
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
     }
@@ -105,10 +138,17 @@ $turn = 11;
     }
 
     function chooseAsset() {
+
         var turn = parseInt(document.getElementById("turn").innerHTML);
-        var turn = turn + 1;
+        turn = turn + 1;
+
         var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        var amount = amount * 2;
+        
+        var item = document.getElementById("asset_name").innerHTML;
+
+        var value = parseInt(document.getElementById("asset_value").innerHTML);
+
+        amount = amount - value;
         
         // var rand = Math.floor(Math.random() * 90) + 10;
         // document.getElementById("h1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
@@ -116,33 +156,70 @@ $turn = 11;
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
-        setCookie('amount', (amount * 2), 7);
+        setCookie('amount', amount.toString(), 7);
+
+        addRow(item, 'Asset', value);
 
     }
 
     function chooseLiability() {
+
         var turn = parseInt(document.getElementById("turn").innerHTML);
-        var turn = turn + 1;
+        turn = turn + 1;
+
         var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        var amount = amount * 2;
         
+        var item = document.getElementById("liability_name").innerHTML;
+
+        var value = parseInt(document.getElementById("liability_value").innerHTML);
+        
+        amount = amount - value;
+
         // var rand = Math.floor(Math.random() * 90) + 10;
         // document.getElementById("h1").innerHTML = "Turn: " + turn + " T-Dollars: " + (amount * 2);
         // document.getElementById("turn").innerHTML = (turn + 1)
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
-        setCookie('amount', (amount * 2), 7);
+        setCookie('amount', amount.toString(), 7);
+
+        addRow(item,'Liability',value);
 
     }
+
+    
+
 </script>
 <div>
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
+        
         <h1>Turn:<span id='turn'></span></h1> <h1>T-Dollars:<span id='t-dollars'></span></h1><br>
+        <h1> Invest in assets and liabilities!<br> Assets gain value over time, 
+        while liabilities give immediate bonuses</h1><br><br>
         <h2 id='h2'>Wealth:</h2>
-        <h3 id='asset'>Asset</h3>
-        <h3 id='liability'>Liability</h3>
+        
+        
+        <table id="myTableData"  border="1" cellpadding="2">
+        <tr>
+            <td>&nbsp;</td>
+            <td><b>Item</b></td>
+            <td><b>Type</b></td>
+            <td><b>Value</b></td>
+        </tr>
+        </table><br><br>
+
+
+        <h2><span id='asset_name'>50g bar of gold</span>->
+            <span id='asset_value'>10</span> t-dollars: 
+            <span id='asset_desc'>Expensive, but increases its value over time</span>
+        </h2>
+
+        <h2>
+        <span id='liability_name'>Apple Airpods</span>->
+        <span id='liability_value'>5</span> t-dollars: 
+        <span id ='liability_desc'>Increases your happiness greatly</span> 
+        </h2>
 
         <button onclick="chooseAsset()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Asset</button>  
         <button onclick="chooseLiability()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-bottom:0%">Liability</button>
