@@ -53,7 +53,7 @@ $result = $conn->query($sql);
 $count = 0; 
 if (($result->num_rows) > 0) {
 // output data of each row
-echo "<table class='table'>
+echo "<table class='table table-bordered' >
         <div class='feature-block'>
         <tr>
           <th>Username</th>
