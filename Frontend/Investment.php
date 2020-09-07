@@ -312,11 +312,10 @@ $wealth = 0;
         </h3>
         </div> -->
         <div>
-        <br>
-        <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
-        <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary">Deposit</button>
+        <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
+        <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Deposit</button>
         <!-- <button onclick="chooseInvest()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Invest</button> -->
-        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
+        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
     </div>
     </container>
      </body>

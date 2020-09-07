@@ -391,9 +391,9 @@ foreach($liability_qns as $liability) {
         </div>
     <div>
     <br>
-        <button onclick="chooseAsset()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary" >Asset</button>  
-        <button onclick="chooseLiability()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary" >Liability</button>
-        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-auto:0%" class="btn btn-secondary" >Reset Progress</button>
+        <button onclick="chooseAsset()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Asset</button>  
+        <button onclick="chooseLiability()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Liability</button>
+        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Reset Progress</button>
     </div>
      </body>
 
