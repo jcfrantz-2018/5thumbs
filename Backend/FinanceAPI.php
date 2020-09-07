@@ -18,7 +18,7 @@ function get_market_summary(){
 		CURLOPT_CUSTOMREQUEST => "GET",
 		CURLOPT_HTTPHEADER => array(
 			"x-rapidapi-host: apidojo-yahoo-finance-v1.p.rapidapi.com",
-			"x-rapidapi-key: eab7cb3d4fmsh7218e7d8a32d07dp131570jsn4a3ac98cce01"
+		"x-rapidapi-key: f9978a0055mshf85d3039916345fp140d8djsnb9a926c73059"
 		),
 	));
 
