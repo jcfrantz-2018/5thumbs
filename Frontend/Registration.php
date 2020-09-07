@@ -94,7 +94,7 @@ require_once '../Backend/common.php';
             <tr>
                 <td colspan=2 align=center id=submitrow>
                 <br>
-                <a href="Registration_process.php" class="btn-get-started scrollto" value='Login'>Register</a>
+                <input type="submit" class="btn-get-started scrollto" value='Submit'>
                 </td>
             </tr>
         </table>

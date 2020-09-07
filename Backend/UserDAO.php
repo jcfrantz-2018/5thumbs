@@ -31,7 +31,7 @@ class UserDAO {
     }
 
     public function addUser($email, $password, $username, $first_name, $last_name) {
-        $sql = 'INSERT INTO User (email, password, username, first_name, last_name) 
+        $sql = 'INSERT INTO user (email, password, username, first_name, last_name) 
                 VALUES (:email, :password, :username, :first_name, :last_name)';
     
         $connMgr = new ConnectionManager();       
