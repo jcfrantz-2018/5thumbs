@@ -171,6 +171,7 @@ $turn = 0;
         }
         document.getElementById('turn').innerHTML = turn;
         document.getElementById('t-dollars').innerHTML = amount;
+        //try and edit here mebbe theres the issue?
     }
 
     function setCookie(name,value,days) {
