@@ -8,14 +8,6 @@ if (isset($_SESSION['username'])){
     $username = $_SESSION['username'];
 }
 
-
-if (isset($_SESSION['market_summary'])){
-    $market_summary = $_SESSION['market_summary']; 
-    $market_info = $market_summary['marketSummaryResponse']['result']; 
-}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -139,23 +131,15 @@ $wealth = 0;
         var amount = getCookie("amount");
         var turn = getCookie("turn");
 
-        var happiness = getCookie("happiness");
-        var wealth = getCookie("wealth");
-
         var num_of_turns = 1;
         setCookie('num_of_turns', num_of_turns, 7);
         
-        if (amount == '' || turn == ''|| happiness == ''|| wealth == '') {
+        if (amount == '' || turn == '') {
             var amount = "<?php echo $amount ?>";
             var turn = "<?php echo $turn ?>";
-            var amount = "<?php echo $wealth ?>";
-            var turn = "<?php echo $happiness ?>";
         }
         document.getElementById('turn').innerHTML = turn;
         document.getElementById('t-dollars').innerHTML = amount;
-
-        document.getElementById('happiness').innerHTML = happiness;
-        document.getElementById('wealth').innerHTML = wealth;
     }
 
     function setCookie(name,value,days) {
@@ -169,7 +153,7 @@ $wealth = 0;
     }
 
     function chooseWithdraw() {
-
+//still editing
         var turn = parseInt(document.getElementById("turn").innerHTML);
         turn = turn + 1;
 
@@ -227,61 +211,13 @@ $wealth = 0;
         document.getElementById('wealth').innerHTML = wealth.toString();
         setCookie('wealth', wealth.toString(), 7);
     }
-//     function chooseInvest() {
-// //still editing
-//         var turn = parseInt(document.getElementById("turn").innerHTML);
-//         turn = turn + 1;
 
-//         var amount = parseInt(document.getElementById("t-dollars").innerHTML);
-        
-//         var item = document.getElementById("invest_name").innerHTML;
-
-//         var value = parseInt(document.getElementById("invest_value").innerHTML);
-        
-
-//         amount = amount - value;
-
-//         var wealth = parseInt(document.getElementById("wealth").innerHTML);
-//         var happiness = parseInt(document.getElementById("happiness").innerHTML);
-       
-//         wealth = wealth - 1;
-//         happiness = happiness + 1;
-
-//         document.getElementById('turn').innerHTML = turn.toString();
-//         document.getElementById("t-dollars").innerHTML = amount.toString();
-//         setCookie('turn', turn.toString(), 7);
-//         setCookie('amount', amount.toString(), 7);
-
-//         document.getElementById('wealth').innerHTML = wealth.toString();
-//         document.getElementById("happiness").innerHTML = happiness.toString();
-//         setCookie('wealth', turn.toString(), 7);
-//         setCookie('happiness', turn.toString(), 7);
-//     }
 
 </script>
 <div>
 <h1>Deposit, invest or withdraw?<br><br></h1>
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
-
-     <table id="MarketData" class="center"  border="1" cellpadding="2">
-        <tr>
-            <td><b>Exchange Name</b></td>
-            <td><b>Symbol</b></td>
-            <td><b>Change</b></td>
-            <td><b>Price</b></td>
-        </tr>
-        <?php
-        foreach ($market_info as $one_market){
-            echo "<tr>
-                    <td>{$one_market['fullExchangeName']}</td>
-                    <td>{$one_market['symbol']}</td>
-                    <td>{$one_market['regularMarketChangePercent']['fmt']}</td>
-                    <td>{$one_market['regularMarketPrice']['fmt']}</td>
-            </tr>"; 
-        }
-        ?>
-        </table><br><br>
 
         <h1>Turn: <span id='turn'></span></h1> <h1>T-Dollars: <span id='t-dollars'></span></h1><br>
         <br><br>
@@ -303,18 +239,10 @@ $wealth = 0;
         <span id ='deposit_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 10% interest of money after 20s.</span> 
         </h3>
         </div>
-        
-        <!-- <div class="invest">
-        <h3>
-        <span id='invest_name'>Invest</span>->
-        <span id='invest_value'>5</span> t-dollars: 
-        <span id ='invest_desc'>Investing money allows you to earn in the long run. When you invest, you will earn 10% interest.</span> 
-        </h3>
-        </div> -->
+
         <div>
         <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
         <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Deposit</button>
-        <!-- <button onclick="chooseInvest()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Invest</button> -->
         <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
     </div>
     </container>

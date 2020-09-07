@@ -38,7 +38,7 @@
 <body>
 <section id="hero" class="wow fadeIn">
     <div class="hero-container">
-      <h1>Welcome to 5Thumbs</h1>
+      <h1>Welcome to Money Story</h1>
       <h2>Learn how to make your money work for you</h2>
       <a href="Login.php" class="btn-get-started scrollto">I have an account</a>
       <br>
