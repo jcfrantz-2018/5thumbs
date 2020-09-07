@@ -86,6 +86,9 @@ $liability_dao = new liabilityDAO();
 $amount = $dao->getT_DollarsbyUsername($username);
 $turn = 11;
 
+$initial_happiness = 75;
+setcookie('happiness_level', $initial_happiness, 0, '/');
+
 $asset_qns = $asset_dao->retrieveRandomAsset(10);
 $liability_qns = $liability_dao->retrieveRandomLiability(10);
 
@@ -159,10 +162,13 @@ foreach($liability_qns as $liability) {
     function resetProgress() {
         var amount = "<?php echo $amount ?>";
         var turn = "<?php echo $turn ?>";
+        var happiness = "<?php echo $initial_happiness ?>"
         setCookie('turn', turn.toString(), 7);
         setCookie('amount', amount.toString(), 7);
+        setCookie('happiness_level', happiness.toString(), 7);
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById("t-dollars").innerHTML = amount.toString();
+        document.getElementById("happiness_level").innerHTML = happiness.toString();
     }
 
     function getCookie(cname) {
@@ -195,12 +201,14 @@ foreach($liability_qns as $liability) {
     function checkCookie() {
         var amount = getCookie("amount");
         var turn = getCookie("turn");
+        var happiness = getCookie("happiness_level");
 
         var asset_name = getCookie("assetname1");
         var asset_value = getCookie("assetvalue1");
 
         var liability_name = getCookie("liabilityname1");
         var liability_value = getCookie("liabilityvalue1");
+        var liability_happiness = getCookie("liabilityhappiness1");
 
         var num_of_turns = 1;
         setCookie('num_of_turns', num_of_turns, 7);
@@ -211,12 +219,14 @@ foreach($liability_qns as $liability) {
         }
         document.getElementById('turn').innerHTML = turn;
         document.getElementById('t-dollars').innerHTML = amount;
+        document.getElementById('happiness_level').innerHTML = happiness;
         
         document.getElementById('asset_name').innerHTML = asset_name;
         document.getElementById('asset_value').innerHTML = asset_value;
 
         document.getElementById('liability_name').innerHTML = liability_name.replace('+',' ');
         document.getElementById('liability_value').innerHTML = liability_value;
+        document.getElementById('liability_happiness').innerHTML = liability_happiness;
     }
 
     function chooseAsset() {
@@ -245,6 +255,11 @@ foreach($liability_qns as $liability) {
         var num_of_turns = num_of_turns.toString();
         setCookie('num_of_turns', num_of_turns, 7);
 
+        var happiness_level = parseInt(getCookie("happiness_level"));
+        happiness_level = happiness_level - 5;
+        setCookie('happiness_level', happiness_level.toString(), 7);
+        document.getElementById("happiness_level").innerHTML = happiness_level;
+
         var asset_name = "assetname"
         asset_name = asset_name.concat(num_of_turns);
 
@@ -256,11 +271,27 @@ foreach($liability_qns as $liability) {
         var liability_value = "liabilityvalue"
         liability_value = liability_value.concat(num_of_turns);
 
-        console.log(asset_name);
         document.getElementById("asset_name").innerHTML = getCookie(asset_name);
         document.getElementById("asset_value").innerHTML = getCookie(asset_value);
         document.getElementById("liability_name").innerHTML = getCookie(liability_name);
         document.getElementById("liability_value").innerHTML = getCookie(liability_value);
+
+
+        var table = document.getElementById("myTableData");
+        var i;
+        for (var i = 0, row;row = table.rows[i]; i++) {
+            var investment_type = row.cells[2].innerHTML;
+            if (investment_type == "Asset") {
+                let value = parseInt(row.cells[3].innerHTML);
+                value = value + 5;
+                row.cells[3].innerHTML = value;
+            }
+            else if (investment_type == "Liability") {
+                let value = parseInt(row.cells[3].innerHTML);
+                value = value - 1;
+                row.cells[3].innerHTML = value;
+            }
+        }
 
         addRow(item, 'Asset', value);
 
@@ -286,6 +317,15 @@ foreach($liability_qns as $liability) {
         setCookie('amount', amount.toString(), 7);
 
         var num_of_turns = parseInt(getCookie("num_of_turns"));
+
+        var happiness_level = parseInt(getCookie("happiness_level"));
+        var happiness = "liabilityhappiness";
+        happiness = happiness.concat(num_of_turns.toString());
+        happiness_gain = parseInt(getCookie(happiness));
+        happiness_level = happiness_level + happiness_gain;
+        setCookie('happiness_level', happiness_level.toString(), 7);
+        document.getElementById("happiness_level").innerHTML = happiness_level;
+
         num_of_turns = num_of_turns + 1;
         var num_of_turns = num_of_turns.toString();
         setCookie('num_of_turns', num_of_turns, 7);
@@ -317,8 +357,11 @@ foreach($liability_qns as $liability) {
   <id="game" align=center style="text_align:center">
      <body onload="checkCookie()">
         
-        <h1>Turn:<span id='turn'></span></h1> <h1>T-Dollars:<span id='t-dollars'></span></h1><br>
-        <h1> Invest in assets and liabilities!<br> Assets gain value over time, 
+        <h1>Turn:<span id='turn'> </span></h1> 
+        <h1>T-Dollars:<span id='t-dollars'> </span></h1>
+        <h1>Happiness level:<span id='happiness_level'> </span></h1><br>
+        <h1> Invest in assets and liabilities!<br>
+         Assets gain value over time, 
         while liabilities give immediate bonuses</h1><br><br>
         <h2 id='h2'>Wealth:</h2>
         
@@ -343,14 +386,14 @@ foreach($liability_qns as $liability) {
         <h3>
         <span id='liability_name'><?php echo $liability_name; ?></span>->
         <span id='liability_value'><?php echo $liability_value; ?></span> t-dollars: 
-        <span id ='liability_desc'>Increases your happiness greatly</span> 
+        <span id='liability_desc'>Makes you happier by </span><span id='liability_happiness'></span> points
         </h3>
         </div>
-
-        <button onclick="chooseAsset()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Asset</button>  
-        <button onclick="chooseLiability()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Liability</button>
-        <button onclick="resetProgress()" style="background-color:yellow;margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%">Reset Progress</button>
-
+    <div>
+        <button onclick="chooseAsset()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Asset</button>  
+        <button onclick="chooseLiability()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Liability</button>
+        <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary" >Reset Progress</button>
+    </div>
      </body>
 
 

@@ -54,6 +54,49 @@ require_once 'header.php';
         echo "<h1>Welcome ".$full_name."!<h1>";
         echo "<h3>You have {$T_dollars} T-dollars</h3>";
         ?>
+      <br>
+      <h4>Click on the links in the upper right corner to learn
+        about<br>the different ways money can work harder for you</h4>
+      <br>
       </div>
-      </section>
+</section>
+<section class="padd-section text-center wow fadeInUp">
+<div class="container">
+<h1>Top 10 players</h1>
+<br>
+<?php
+require_once '../Backend/common.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "userinfo";
+    
+$conn = new mysqli($servername, $username, $password, $dbname);
+    
+$sql = "SELECT username, T_Dollars FROM T_Dollars ORDER by T_Dollars desc";
+$result = $conn->query($sql);
+
+$count = 0; 
+if (($result->num_rows) > 0) {
+// output data of each row
+echo "<table class='table table-bordered' >
+        <div class='feature-block'>
+        <tr>
+          <th>Username</th>
+          <th>T Dollars</th>
+        </tr>
+";
+//retrieves top 10
+while($row = $result->fetch_assoc() and ($count<10)) {
+    echo "<tr><td>".$row["username"]."</td>"."<td>".$row["T_Dollars"]."</td></tr>";
+    $count = $count + 1;
+}
+echo "</table>";
+}
+else {
+echo "Still looking for our leaders!";
+}
+
+$conn->close();
+?>
 </body>
