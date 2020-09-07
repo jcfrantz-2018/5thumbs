@@ -5,7 +5,7 @@ class T_DollarsDAO {
 //////// Counts total number of courses enrolled by the user ////////
     public function getUsername_T_Dollars() {
         $sql = 'SELECT username, T_Dollars 
-                FROM t_dollars
+                FROM T_Dollars
                 ORDER BY T_Dollars desc';
 
         $connMgr = new ConnectionManager();
@@ -36,7 +36,7 @@ class T_DollarsDAO {
     }
     
     public function addUserT_Dollar($email, $username) {
-        $sql = 'INSERT INTO t_dollars (email, username, T_Dollars) 
+        $sql = 'INSERT INTO T_Dollars (email, username, T_Dollars) 
                 VALUES (:email, :username, 100)';
     
         $connMgr = new ConnectionManager();       
@@ -67,7 +67,7 @@ class T_DollarsDAO {
     }
 
     public function updateT_Dollar($username, $t_dollars) {
-        $sql = 'UPDATE t_dollar
+        $sql = 'UPDATE T_Dollars
                 SET T_Dollars = $t_dollars
                 WHERE username = :username';
                 
@@ -100,7 +100,7 @@ class T_DollarsDAO {
 
     public function getT_DollarsbyUsername($username) {
         $sql = 'SELECT T_Dollars 
-                FROM t_dollars
+                FROM T_Dollars
                 WHERE username = :username';
 
         $connMgr = new ConnectionManager();
