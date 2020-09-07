@@ -195,14 +195,10 @@ $wealth = 0;
         var wealth = parseInt(document.getElementById("wealth").innerHTML);
         var happiness = parseInt(document.getElementById("happiness").innerHTML);
 
-        var delayInMilliseconds = 5000; //5 seconds
-        setTimeout(function() {
-            amount = amount + 2;
-        }, delayInMilliseconds);
-
         amount = amount + value;
         wealth = wealth + 1;
 
+        
         document.getElementById('turn').innerHTML = turn.toString();
         document.getElementById('t-dollars').innerHTML = amount.toString();
         setCookie('turn', turn.toString(), 7);
@@ -210,8 +206,8 @@ $wealth = 0;
 
         document.getElementById('wealth').innerHTML = wealth.toString();
         setCookie('wealth', wealth.toString(), 7);
-    }
 
+    }
 
 </script>
 <div>
@@ -226,7 +222,7 @@ $wealth = 0;
 
         <div class="withdraw">
         <h3><span id='withdraw_name'>Living expenses</span>->
-            <span id='withdraw_value'>1</span> t-dollars: 
+            <span id='withdraw_value'>2</span> t-dollars: 
             <span id='withdraw_desc'>Withdrawing money allows you to buy things and increases your happiness</span>
         </h3>   
         </div>
@@ -235,7 +231,7 @@ $wealth = 0;
         <div class="deposit">
         <h3>
         <span id='deposit_name'>Deposit</span>->
-        <span id='deposit_value'>5</span> t-dollars: 
+        <span id='deposit_value'>10</span> t-dollars: 
         <span id ='deposit_desc'>Depositing money allows you to earn passively. When you deposit, you will earn 10% interest of money after 20s.</span> 
         </h3>
         </div>
@@ -243,6 +239,22 @@ $wealth = 0;
         <div>
         <button onclick="chooseWithdraw()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Withdraw</button>  
         <button id="depositBtn" onclick="chooseDeposit()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Deposit</button>
+        <script>
+            const btnInvest = document.getElementById("depositBtn");
+
+            btnInvest.addEventListener("click",function(){
+            setTimeout(function() {
+            //your code to be executed after 2 second
+            var amount = parseInt(document.getElementById("t-dollars").innerHTML);
+            amount = amount+5;
+            document.getElementById('t-dollars').innerHTML = amount.toString();
+            setCookie('amount', amount.toString(), 7);
+            console.log("help");
+            }, 2000);
+            })
+
+            
+         </script>
         <button onclick="resetProgress()" style="margin-left:auto;margin-right:auto;display:inline-block;margin-top:22%;margin-auto:0%" class="btn btn-secondary">Reset Progress</button>
     </div>
     </container>

@@ -49,6 +49,7 @@ require_once 'header.php';
         <?php
         $userObj = new UserDAO;
         $TdollarsObj = new T_DollarsDAO;
+        
         $full_name = $userObj->getFullName($_SESSION["username"]);
         $T_dollars = $TdollarsObj-> getT_DollarsbyUsername($_SESSION["username"]);
         echo "<h1>Welcome ".$full_name."!<h1>";
