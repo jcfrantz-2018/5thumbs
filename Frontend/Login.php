@@ -2,6 +2,7 @@
 
 require_once '../Backend/common.php';
 
+$username = $_SESSION['username'];
 ?>
 
 <?php

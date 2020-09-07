@@ -9,13 +9,12 @@ require_once '../Backend/common.php';
 // $T_dollars = new T_DollarsDAO;
 // $Leaderboard = $T_dollars->getUsername_T_Dollars();
 
+ //$userObj = new UserDAO;
+ //$Fullname = $userObj->getFullName('alice');
 
-// $userObj = new UserDAO;
-// $Fullname = $userObj->getFullName('alice');
-
-// echo $Fullname;
-// echo '<br>';
-// print_r($Leaderboard);
+ //echo $Fullname;
+ //echo '<br>';
+ //print_r($Leaderboard);
 
 ?>
 
@@ -95,7 +94,7 @@ require_once '../Backend/common.php';
             <tr>
                 <td colspan=2 align=center id=submitrow>
                 <br>
-                <a href="Start.php" class="btn-get-started scrollto" value='Login'>Register</a>
+                <a href="Registration_process.php" class="btn-get-started scrollto" value='Login'>Register</a>
                 </td>
             </tr>
         </table>

@@ -1,6 +1,8 @@
 <?php
     require_once '../Backend/common.php';
-
+    
+    $username = $_SESSION['username'];
+    
     $dao = new UserDAO();
     $T_dollardao = new T_DollarsDAO();
 
